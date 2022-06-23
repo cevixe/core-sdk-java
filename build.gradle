@@ -1,15 +1,21 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
-group 'org.example'
+apply plugin: "application"
+apply plugin: "java"
+
+group 'com.github.cevixe'
 version '1.0-SNAPSHOT'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
