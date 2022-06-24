@@ -20,7 +20,7 @@ class EventClassTest {
     @ParameterizedTest
     @MethodSource("generateEventClass")
     @DisplayName("Test event class enum toShortName")
-    void eventClassToShortNameTest(EventClass eventClass){
+    void eventClassToShortNameTest(EventClass eventClass) {
         List<String> shortNameList = List.of("B", "C", "D", "S");
         Assertions.assertTrue(shortNameList.contains(eventClass.getShorName()));
     }
@@ -28,14 +28,14 @@ class EventClassTest {
     @ParameterizedTest
     @MethodSource("generateCorrectShortNames")
     @DisplayName("Test event class enum of method when short name is correct")
-    void eventClassOfTest(String shortName){
+    void eventClassOfTest(String shortName) {
         assertThat(EventClass.of(shortName), notNullValue());
     }
 
     @ParameterizedTest
     @MethodSource("generateEquivalenceArgument")
     @DisplayName("Test in the short name and event class enum convertion are equivalent")
-    void eventClassShortNameEquivalence(EventClass eventClass, String shortName){
+    void eventClassShortNameEquivalence(EventClass eventClass, String shortName) {
         assertThat(EventClass.of(shortName), is(eventClass));
         assertThat(eventClass.getShorName(), is(shortName));
     }
@@ -43,11 +43,11 @@ class EventClassTest {
     @ParameterizedTest
     @MethodSource("generateIncorrectShortName")
     @DisplayName("Test in the short name is incorrect")
-    void eventClassNullIfIncorrectoShortName(String shortName){
+    void eventClassNullIfIncorrectShortName(String shortName) {
         assertThat(EventClass.of(shortName), nullValue());
     }
 
-    static Stream<String> generateIncorrectShortName(){
+    static Stream<String> generateIncorrectShortName() {
         String letterUpperCase = "AEFGHIJKLMNOPQRTUVWXYZ0123456789";
         String letterLowerCase = letterUpperCase.toLowerCase();
 
@@ -66,9 +66,11 @@ class EventClassTest {
                 Arguments.of(EventClass.SYSTEM_EVENT, "S")
         );
     }
+
     static Stream<String> generateCorrectShortNames() {
         return Stream.of("B", "C", "D", "S");
     }
+
     static Stream<EventClass> generateEventClass() {
         return Stream.of(
                 EventClass.BUSINESS_EVENT,
@@ -77,7 +79,6 @@ class EventClassTest {
                 EventClass.SYSTEM_EVENT
         );
     }
-
 
 
 }
